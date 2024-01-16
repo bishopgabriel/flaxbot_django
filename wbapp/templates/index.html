@@ -12,7 +12,14 @@
         <div class="row">
             <div class="col-md-6 mx-auto">
                 <h2>Homepage</h2>
-                <a href="" class="btn btn-primary">Login with Github</a>
+                {% if not request.user.is_authenticated %}
+                    {% load socialaccount %}
+                    <p>You are not logged in yet. Click the button to proceed to login.</p>
+                    <a href="{% provider_login_url 'github' %}" class="btn btn-primary">Login with Github</a>
+                {% else %}
+                    <p>You are already logged in. Click the button to return to the dashboard.</p>
+                    <a href="{% url 'dashboard' %}" class="btn btn-success">Go to dashboard</a>
+                {% endif %}
             </div>
         </div>
     </div>
