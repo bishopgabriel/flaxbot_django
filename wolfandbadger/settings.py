@@ -37,6 +37,7 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
+LOGIN_REDIRECT_URL = 'dashboard'  # added for redirect
 
 # Application definition
 
@@ -96,6 +97,15 @@ SOCIALACCOUNT_PROVIDERS = {
             'key': ''
         }
     }
+
+    # 'github': {
+    #     'SCOPE': [
+    #         'user',
+    #         'repo',
+    #         'read:org',
+    #     ],
+    #     'VERIFIED_EMAIL': False,
+    # }
 }
 
 
