@@ -27,6 +27,16 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+SITE_ID = 1 # wolfandB: added to make admin work
+
+# wolfandB: added backend login
+AUTHENTICATION_BACKENDS = [
+    # django normal login
+    'django.contrib.auth.backends.ModelBackend',
+    # social login
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
 
 # Application definition
 
@@ -37,6 +47,12 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+     # wolfandB: added apps
+    "django.contrib.sites",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "allauth.socialaccount.providers.github",
     "wbapp",
 ]
 
@@ -48,6 +64,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+
+    "allauth.account.middleware.AccountMiddleware",
 ]
 
 ROOT_URLCONF = "wolfandbadger.urls"
@@ -67,6 +85,19 @@ TEMPLATES = [
         },
     },
 ]
+
+
+# wolfandB: social providers:
+SOCIALACCOUNT_PROVIDERS = {
+    'github': {
+        'APP': {
+            'client_id': '123',
+            'secret': '456',
+            'key': ''
+        }
+    }
+}
+
 
 WSGI_APPLICATION = "wolfandbadger.wsgi.application"
 
