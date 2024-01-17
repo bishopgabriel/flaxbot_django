@@ -47,7 +47,12 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 ```
 
-- step 5: start the server by running this command
+- step 5: to run a test, run this command
+```cmd
+python manage.py test
+```
+
+- step 6: start the server by running this command
 ```cmd
 python manage.py runserver
 ```
