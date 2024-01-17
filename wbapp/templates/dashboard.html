@@ -1,18 +1,80 @@
-<h1>Dashboard</h1>
+{% extends 'base.html' %}
 
-{% if request.user.is_authenticated %}
 
-    <a href="{% url 'account_logout' %}">Logout</a>
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <h1>Dashboard</h1>
 
-{% else %}
+            {% if request.user.is_authenticated %}
+            Hello {{request.user}}
+                <a href="{% url 'account_logout' %}" class="btn btn-sm btn-warning">Logout</a>
 
-    <p>Please wait while you are being redirected...</p>
+                {% if exist and not edit %}
 
-    <script>
-        // Redirect to the login page after a short delay
-        setTimeout(function () {
-            window.location.href = "{% url 'homepage' %}";
-        }, 1000);  // 3000 milliseconds (3 seconds) delay, adjust as needed
-    </script>
+                    <div class="card mt-5">
+                        <div class="card-header">
+                            <!-- <button class="btn btn-primary btn-sm float-end" data-bs-toggle="modal" data-bs-target="#exampleModalToggle">Update</button> -->
+                            <form method="POST" action="{% url 'dashboard' %}">
+                                {% csrf_token %}
+                                <button class="btn btn-danger btn-sm float-end mx-2" name="delete" value="{{data.id}}">Delete</button>
+                            </form>
+                            <a href="{% url 'user_profile' data.id %}" class="btn btn-primary btn-sm float-end mx-2">Edit Profile</a>
+                        </div>
+                        <div class="card-body">  
+                            <p><b>Username:</b> {{ data.username }}</p>   
+                            <p><b>email:</b> {{ data.email }}</p>
+                            <p><b>phone:</b> {{ data.phone }}</p>
+                            <p><b>address:</b> {{ data.address }}</p>
+                        </div>
+                    </div>       
 
-{% endif %}
+                {% else %}
+
+                <h4 class="mt-5 text-center">Create new profile</h4>
+                <form method="POST" action="{% url 'dashboard' %}">
+                    {% csrf_token %}
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control"  value="{{request.user}}" diabled>
+                        <label>Username</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" placeholder="email@example.com" name="email" value="{% if edit %} {{data.email}} {% endif %}">
+                        <label>Email address</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" placeholder="home address" name="address" value="{% if edit %} {{data.address}} {% endif %}">
+                        <label>Home address</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" placeholder="+447012345678" name="phone" value="{% if edit %} {{data.phone}} {% endif %}">
+                        <label>Phone</label>
+                    </div>
+                    {% if edit %}
+                        <button type="submit" class="btn btn-primary btn-block" name="update" value="{{data.id}}">Update</button>
+                    {% else %}
+                        <button type="submit" class="btn btn-primary btn-block" name="create">Submit</button>
+                    {% endif %}
+                </form>
+                {% endif %}
+
+            {% else %}
+
+                <p>Please wait while you are being redirected...</p>
+
+                <script>
+                    // Redirect to the login page after a short delay
+                    setTimeout(function () {
+                        window.location.href = "{% url 'homepage' %}";
+                    }, 1000);  // 3000 milliseconds (3 seconds) delay, adjust as needed
+                </script>
+
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

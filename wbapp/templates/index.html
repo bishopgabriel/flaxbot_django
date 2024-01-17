@@ -1,29 +1,22 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Wolf and Baddger | CRUD test</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-  </head>
-  <body>
+{% extends 'base.html' %}
 
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-md-6 mx-auto">
-                <h2>Homepage</h2>
-                {% if not request.user.is_authenticated %}
-                    {% load socialaccount %}
-                    <p>You are not logged in yet. Click the button to proceed to login.</p>
-                    <a href="{% provider_login_url 'github' %}" class="btn btn-primary">Login with Github</a>
-                {% else %}
-                    <p>You are already logged in. Click the button to return to the dashboard.</p>
-                    <a href="{% url 'dashboard' %}" class="btn btn-success">Go to dashboard</a>
-                {% endif %}
-            </div>
+
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <h2>Homepage</h2>
+            {% if not request.user.is_authenticated %}
+                {% load socialaccount %}
+                <p>You are not logged in yet. Click the button to proceed to login.</p>
+                <a href="{% provider_login_url 'github' %}" class="btn btn-primary">Login with Github</a>
+            {% else %}
+                <p>You are already logged in. Click the button to return to the dashboard.</p>
+                <a href="{% url 'dashboard' %}" class="btn btn-success">Go to dashboard</a>
+            {% endif %}
         </div>
     </div>
+</div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-  </body>
-</html>
+{% endblock %}
