@@ -1,6 +1,6 @@
 # WolfandBadger test:
 
-[![Test status](https://github.com/PHPMailer/PHPMailer/workflows/Tests/badge.svg)](https://github.com/PHPMailer/PHPMailer/actions)
+[![Test status](https://github.com/PHPMailer/PHPMailer/workflows/Tests/badge.svg)](https://github.com/bishopgabriel/wolfandbadger/actions)
 
 ### Create a simple CRUD app that requires Github Authentication
 
