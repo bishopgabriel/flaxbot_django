@@ -1,7 +1,9 @@
-# WolfandBadger
-Wolf and Wadger test:
+# WolfandBadger test:
+
+[![Test status](https://github.com/PHPMailer/PHPMailer/workflows/Tests/badge.svg)](https://github.com/PHPMailer/PHPMailer/actions)
 
 ### Create a simple CRUD app that requires Github Authentication
+
 <p><strong style="color:orange">NOTE:</strong> This project was built in a simple approach. If more time is given, I could build a separate front-end (using ReactJS or VueJS) and connect it to the server. The server will be built as an API using rest_framework (which I already started on the "api" folder). Also, rather than running all the commands below, I could write a docker file to easily start the project in an isolated linux container with all the required dependencies.</p>
 <p>Finally, sqlite was used to make the database easier to test the project. A live production will entail either of MySQL, MSSQL, or Postgres...and the changes can be made in the settings.py of the project to connect to the right database.</p>
 
