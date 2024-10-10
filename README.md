@@ -1,4 +1,4 @@
-# WolfandBadger test:
+# WolfandBadger:
 
 [![Test status](https://github.com/PHPMailer/PHPMailer/workflows/Tests/badge.svg)](https://github.com/bishopgabriel/wolfandbadger/actions)
 
